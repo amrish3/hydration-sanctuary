@@ -62,7 +62,7 @@ export default function App() {
         const docRef = doc(db, "sanctuaries", roomID);
 
         const unsub = onSnapshot(docRef, (snapshot) => {
-            const today = new Date().toLocaleDateString(); // e.g., "10/24/2023"
+            const today = new Date().toISOString().split("T")[0];
 
             if (!snapshot.exists()) {
                 setDoc(docRef, {
@@ -76,7 +76,6 @@ export default function App() {
 
             const data = snapshot.data();
 
-            // If it's a new day, reset WITHOUT awaiting
             if (data.lastResetDate !== today) {
                 updateDoc(docRef, {
                     waterLevel: 0,
