@@ -164,7 +164,7 @@ export default function App() {
                     <motion.div
                         onClick={() => {
                             setMoonClickCount(prev => prev + 1);
-                            if (moonClickCount >= 2) { setIsAdmin(true); setMoonClickCount(0); }
+                            if (moonClickCount >= 4) { setIsAdmin(true); setMoonClickCount(0); }
                         }}
                         animate={{ y: [0, -10, 0] }}
                         transition={{ duration: 8, repeat: Infinity }}

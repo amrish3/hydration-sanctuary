@@ -15,7 +15,7 @@ export default function Bottle({ message, isVisible, onClose }) {
                         <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                             <MailOpen className="text-blue-200" size={40} />
                         </div>
-                        <h3 className="text-xl font-medium mb-4 text-blue-100 italic">"A note from my favorite person"</h3>
+                        <h3 className="text-xl font-medium mb-4 text-blue-100 italic">"A note from your favorite person"</h3>
                         <p className="text-blue-50/80 leading-relaxed mb-8">
                             {message}
                         </p>
