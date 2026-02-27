@@ -20,6 +20,10 @@ export default function App() {
     const audioRef = useRef(new Audio(SPLASH_SOUND));
     const [isIntro, setIsIntro] = useState(true);
 
+    if (isIntro) {
+        return <SplashScreen onFinish={() => setIsIntro ( false )}/>;
+    }
+
     const roomID = "our-special-place";
     const dailyGoal = 3000;
 
@@ -291,8 +295,6 @@ export default function App() {
                 isVisible={showBottlePopup}
                 onClose={() => setShowBottlePopup(false)}
             />
-
-            if (isIntro) return <SplashScreen onFinish={() => setIsIntro(false)} />;
         </div>
     );
 }
