@@ -2,7 +2,7 @@
   "name": "Hydration Sanctuary",
   "short_name": "Hydration",
   "description": "A calm, ocean-inspired hydration reminder app",
-  "start_url": "https://hydration-sanctuary.vercel.app/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0b3c5d",
   "theme_color": "#0ea5e9",

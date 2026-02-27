@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Droplets, Moon, Send, Sparkles, x } from 'lucide-react';
+import { Droplets, Moon, Send, Sparkles, X } from 'lucide-react';
 import ReefLife from './components/ReefLife';
 import Bottle from './components/Bottle';
 import SplashScreen from './components/SplashScreen';
@@ -38,6 +38,7 @@ export default function App() {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();
+
         // Simple lunar cycle math (approx 29.5 days)
         const lp = 2551443;
         const now = new Date(year, month-1, day, 20, 35, 0);
@@ -54,35 +55,41 @@ export default function App() {
         return "🌘"; // Waning Crescent
     };
 
+    console.log("DB object:", db);
+
     // 1. DATABASE SYNC
     useEffect(() => {
-        const unsub = onSnapshot(doc(db, "sanctuaries", roomID), async (snapshot) => {
+        const docRef = doc(db, "sanctuaries", roomID);
+
+        const unsub = onSnapshot(docRef, (snapshot) => {
             const today = new Date().toLocaleDateString(); // e.g., "10/24/2023"
 
-            if (snapshot.exists()) {
-                const data = snapshot.data();
-
-                // CHECK FOR RESET: If the date in DB isn't today, reset the level to 0
-                if (data.lastResetDate !== today) {
-                    await updateDoc(doc(db, "sanctuaries", roomID), {
-                        waterLevel: 0,
-                        lastResetDate: today
-                    });
-                } else {
-                    setWaterLevel(data.waterLevel || 0);
-                    setHasNewMessage(data.hasUnreadMessage || false);
-                    setCurrentMessage(data.lastMessage || "");
-                }
-            } else {
-                // Initialize with today's date
-                await setDoc(doc(db, "sanctuaries", roomID), {
+            if (!snapshot.exists()) {
+                setDoc(docRef, {
                     waterLevel: 0,
                     hasUnreadMessage: false,
                     lastMessage: "Welcome to your sanctuary. ✨",
                     lastResetDate: today
                 });
+                return;
             }
+
+            const data = snapshot.data();
+
+            // If it's a new day, reset WITHOUT awaiting
+            if (data.lastResetDate !== today) {
+                updateDoc(docRef, {
+                    waterLevel: 0,
+                    lastResetDate: today
+                });
+                return;
+            }
+
+            setWaterLevel(data.waterLevel || 0);
+            setHasNewMessage(data.hasUnreadMessage || false);
+            setCurrentMessage(data.lastMessage || "");
         });
+
         return () => unsub();
     }, []);
 
