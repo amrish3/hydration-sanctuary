@@ -21,7 +21,7 @@ export default function App() {
     const [isIntro, setIsIntro] = useState(true);
 
     if (isIntro) {
-        return <SplashScreen onFinish={() => setIsIntro ( false )}/>;
+        return <SplashScreen onFinish={() => setIsIntro (false)} />;
     }
 
     const roomID = "our-special-place";
@@ -141,7 +141,8 @@ export default function App() {
     };
 
     return (
-        <div className="relative min-h-screen w-full flex flex-col items-center justify-center p-4 overflow-hidden">
+        <div className="relative min-h-screen w-full flex flex-col items-center justify-center p-4 overflow-hidden bg-[#0f172a]">
+            {/* 1. Background Elements */}
             <ReefLife waterLevel={waterLevel} />
 
             {/*<motion.div*/}
@@ -152,6 +153,7 @@ export default function App() {
             {/*    <Moon size={80} fill="currentColor" className="blur-[2px]" />*/}
             {/*</motion.div>*/}
 
+            {/* 2. Moon */}
             {/* Secret Moon Toggle: Click 3 times to open Admin Panel */}
             <motion.div
                 onClick={() => {
@@ -219,8 +221,11 @@ export default function App() {
             {/*    </div>*/}
             {/*</motion.div>*/}
 
-            {/* MAIN CARD */}
-            <motion.div className="glass w-full max-w-sm rounded-[50px] p-10 relative z-10 shadow-[0_0_50px_rgba(30,58,138,0.3)]">
+            {/* 3. Main Sanctuary Card */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="glass w-full max-w-sm rounded-[50px] p-10 relative z-10 shadow-[0_0_50px_rgba(30,58,138,0.3)]">
                 <div className="relative w-40 h-72 mx-auto border-[6px] border-white/10 rounded-b-[80px] rounded-t-2xl overflow-hidden bg-white/5">
                     <motion.div
                         animate={{ height: `${waterLevel}%` }}
@@ -258,6 +263,14 @@ export default function App() {
                 </button>
             </motion.div>
 
+
+            {/* 4. Popups */}
+            <Bottle
+                message={currentMessage}
+                isVisible={showBottlePopup}
+                onClose={() => setShowBottlePopup(false)}
+            />
+
             {/* ADMIN PANEL (Step A) */}
             <AnimatePresence>
                 {isAdmin && (
@@ -289,12 +302,6 @@ export default function App() {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            <Bottle
-                message={currentMessage}
-                isVisible={showBottlePopup}
-                onClose={() => setShowBottlePopup(false)}
-            />
         </div>
     );
 }
