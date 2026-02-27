@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Droplets, Moon, Send, Sparkles, x } from 'lucide-react';
 import ReefLife from './components/ReefLife';
 import Bottle from './components/Bottle';
+import SplashScreen from './components/SplashScreen';
 import { doc, onSnapshot, updateDoc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
@@ -17,6 +18,7 @@ export default function App() {
     const [customNote, setCustomNote] = useState("");
     const [moonClickCount, setMoonClickCount] = useState(0);
     const audioRef = useRef(new Audio(SPLASH_SOUND));
+    const [isIntro, setIsIntro] = useState(true);
 
     const roomID = "our-special-place";
     const dailyGoal = 3000;
@@ -289,6 +291,8 @@ export default function App() {
                 isVisible={showBottlePopup}
                 onClose={() => setShowBottlePopup(false)}
             />
+
+            if (isIntro) return <SplashScreen onFinish={() => setIsIntro(false)} />;
         </div>
     );
 }
