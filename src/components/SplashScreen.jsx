@@ -16,13 +16,13 @@ export default function SplashScreen({ onFinish }) {
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="flex flex-col items-center"
             >
-                <h2 className="text-blue-100 font-extralight text-3xl sm:text-4xl md:text-5xl tracking-[0.2em] sm:tracking-[0.4em] mb-4">
+                <h2 className="text-blue-100 font-extralight text-3xl sm:text-4xl md:text-5xl tracking-[0.4em] sm:tracking-[0.4em] mb-4">
                     SANCTUARY
                 </h2>
 
                 <motion.p
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.6 }}
+                    animate={{ opacity: 1 }}
                     transition={{ delay: 1, duration: 1 }}
                     className="text-blue-400 italic font-light tracking-widest text-xs sm:text-sm max-w-[250px] sm:max-w-none leading-relaxed"
                 >
@@ -42,7 +42,7 @@ export default function SplashScreen({ onFinish }) {
             <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 2.5 }}
+                transition={{ delay: 1.2, duration: 1}}
                 onClick={onFinish}
                 className="mt-16 px-10 py-3 border border-blue-400/20 rounded-full text-blue-200/40 text-[10px] sm:text-xs tracking-[0.3em] hover:bg-white/5 active:scale-95 transition-all"
             >

@@ -34,10 +34,8 @@ const Fish = ({ delay, y, speed, direction }) => (
 );
 
 export default function ReefLife({ waterLevel }) {
-    console.log("Current Water Level in Reef:", waterLevel); // Debugging
-
     return (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#0f172a]">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             {/* Slow, graceful fish */}
             {waterLevel > 10 && <Fish y="25%" speed={45} delay={0} direction="ltr" />}
             {waterLevel > 40 && <Fish y="70%" speed={35} delay={10} direction="rtl" />}
