@@ -59,7 +59,7 @@ export default function App() {
                     setCurrentMessage(data.lastMessage || "");
                 }
             } else {
-                setDoc(docRef, { waterLevel: 0, hasUnreadMessage: false, lastMessage: "Welcome ✨", lastResetDate: today });
+                setDoc(docRef, { waterLevel: 0, hasUnreadMessage: false, lastMessage: "✨Welcome Cutipie💕", lastResetDate: today });
             }
         });
         return () => unsub();
