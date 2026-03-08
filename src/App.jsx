@@ -159,7 +159,7 @@ export default function App() {
                             </h1>
                         </div>
 
-                        {/* Vessel */}+
+                        {/* Vessel */}
                         <div className="relative w-28 h-60 sm:w-40 sm:h-72 border-[6px] border-white/10 rounded-b-[80px] rounded-t-3xl overflow-hidden bg-white/5 shadow-inner">
 
                             {/* THE WATER (Background Layer) */}
